@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <%= link_to root_path, class: "navbar-brand py-0" do %>
+    <%= image_pack_tag "media/images/logo.png", size: "180x60" %>
+  <% end %>
+  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Player</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Team</a>
+      </li>      
+      <li class="nav-item">
+        <a class="nav-link" href="#">Season</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Settings</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">      
+        <a class="nav-link my-2 my-lg-0" href="#">
+          <i class="mdi mdi-account-eye-outline mr-2" aria-hidden="true"></i>
+          User Name
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link my-2 my-lg-0" href="#">
+          Logout
+          <i class="mdi mdi-logout-variant mx-2" aria-hidden="true"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>

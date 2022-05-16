@@ -6,11 +6,16 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= favicon_pack_tag "media/images/favicon.png" %>
   </head>
 
   <body>
-    <%= yield %>
+    <%= render "application/navbar" %>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>
