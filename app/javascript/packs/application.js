@@ -11,8 +11,15 @@ import "channels"
 import "bootstrap"
 import "../stylesheets/application"
 
+require('datatables.net-bs4')
+import { createDataTable } from "../src/datatable";
+
 const images = require.context("../images", true)
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+document.addEventListener("turbolinks:load", () => {
+  createDataTable();
+});
