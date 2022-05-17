@@ -1,42 +1,69 @@
 <%= form_with(model: player) do |form| %>
   <% if player.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(player.errors.count, "error") %> prohibited this player from being saved:</h2>
-
-      <ul>
-        <% player.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+    <div class="card mb-4 border border-danger">
+      <div class="card-header alert-danger">
+        <h2><%= pluralize(player.errors.count, "error") %> prohibited this player from being saved:</h2>
+      </div>
+      <div class="card-body text-danger">
+        <ul>
+          <% player.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :first_name %>
-    <%= form.text_field :first_name %>
-  </div>
+  <div class="card mb-4">
+    <div class="card-body">
+      <div class="form-group">
+        <%= form.label :first_name %>
+        <span title="required" class="text-danger"> * </span>
+        <%= form.text_field :first_name, class: "form-control", required: true %>
+      </div>
 
-  <div class="field">
-    <%= form.label :last_name %>
-    <%= form.text_field :last_name %>
-  </div>
+      <div class="form-group">
+        <%= form.label :last_name %>
+        <%= form.text_field :last_name, class: "form-control" %>
+      </div>
 
-  <div class="field">
-    <%= form.label :date_of_birth %>
-    <%= form.date_select :date_of_birth %>
-  </div>
+      <div class="form-group">
+        <%= form.label :date_of_birth %>
+        <span title="required" class="text-danger"> * </span>
+        <%= form.date_field :date_of_birth, class: "form-control", required: true %>
+      </div>
 
-  <div class="field">
-    <%= form.label :playing_position %>
-    <%= form.number_field :playing_position %>
-  </div>
+      <div class="form-group">
+        <%= form.label :playing_position %>
+        <span title="required" class="text-danger"> * </span>
+        <%= form.select :playing_position, Player.playing_positions.keys, { prompt: "-- Please Select --" }, class: "form-control", required: true %>
+      </div>
 
-  <div class="field">
-    <%= form.label :country %>
-    <%= form.text_field :country %>
-  </div>
+      <div class="form-group">
+        <%= form.label :country %>
+        <%= form.select :country, Country.all.pluck(:name), { prompt: "-- Please Select --" }, class: "form-control" %>
+      </div>
 
-  <div class="actions">
-    <%= form.submit %>
+      <div class="form-group">
+        <%= form.label :image %>
+        <%= form.file_field :image, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="card-footer d-flex justify-content-center">
+      <%= button_tag(type: 'submit', class: "btn btn-primary btn-sm mr-2") do %>
+        <% if @player.persisted? %>
+          <i class="mdi mdi-arrow-up-bold-circle mr-2" aria-hidden="true"></i>
+          Update Player
+        <% else %>
+          <i class="mdi mdi-content-save mr-2" aria-hidden="true"></i>
+          Create Player
+        <% end %>
+      <% end %>
+      <%= link_to players_path, class: "btn btn-secondary btn-sm ml-2" do %>
+        <i class="mdi mdi-close-circle mr-2" aria-hidden="true"></i>
+        Discard
+      <% end %>
+    </div>
   </div>
 <% end %>

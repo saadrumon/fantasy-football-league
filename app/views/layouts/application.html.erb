@@ -7,6 +7,8 @@
     <%= csp_meta_tag %>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.0/css/jquery.dataTables.min.css">
+    
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= favicon_pack_tag "media/images/favicon.png" %>
@@ -15,6 +17,11 @@
   <body>
     <%= render "application/navbar" %>
     <div class="container">
+      <% flash.each do |type, message| %>
+        <div class="alert <%= bootstrap_class_for(type) %>">
+          <%= message %>
+        </div>
+      <% end %>
       <%= yield %>
     </div>
     <%= render "application/footer" %>
