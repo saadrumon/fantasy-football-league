@@ -10,16 +10,28 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link text-white" href="#">Player</a>
+        <%= link_to players_path, class: "nav-link text-white" do %>
+          <i class="mdi mdi-human-greeting-variant  mr-2" aria-hidden="true"></i>
+          Players
+        <% end %>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white" href="#">Team</a>
+        <a class="nav-link text-white" href="#">
+          <i class="mdi mdi-human-queue  mr-2" aria-hidden="true"></i>
+          Teams
+        </a>
       </li>      
       <li class="nav-item">
-        <a class="nav-link text-white" href="#">Season</a>
+        <a class="nav-link text-white" href="#">
+          <i class="mdi mdi-soccer-field  mr-2" aria-hidden="true"></i>
+          Seasons
+        </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white" href="#">Settings</a>
+        <a class="nav-link text-white" href="#">
+          <i class="mdi mdi-cog-outline  mr-2" aria-hidden="true"></i>
+          Settings
+        </a>
       </li>
     </ul>
 
@@ -32,8 +44,8 @@
       </li>
       <li class="nav-item">
         <a class="nav-link text-white" href="#">
+          <i class="mdi mdi-logout-variant mr-2" aria-hidden="true"></i>
           Logout
-          <i class="mdi mdi-logout-variant mx-2" aria-hidden="true"></i>
         </a>
       </li>
     </ul>
