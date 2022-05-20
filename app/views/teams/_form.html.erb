@@ -1,0 +1,52 @@
+<%= form_with(model: team) do |form| %>
+  <% if team.errors.any? %>
+    <div class="card mb-4 border border-danger">
+      <div class="card-header alert-danger">
+        <h2><%= pluralize(team.errors.count, "error") %> prohibited this team from being saved:</h2>
+      </div>
+      <div class="card-body text-danger">
+        <ul>
+          <% team.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="card mb-4">
+    <div class="card-body">
+      <div class="form-group">
+        <%= form.label :name %>
+        <span title="required" class="text-danger"> * </span>
+        <%= form.text_field :name, class: "form-control", required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :description %>
+        <%= form.text_area :description, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :logo %>
+        <%= form.file_field :logo, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="card-footer d-flex justify-content-center">
+      <%= button_tag(type: 'submit', class: "btn btn-primary btn-sm mr-2") do %>
+        <% if @team.persisted? %>
+          <i class="mdi mdi-arrow-up-bold-circle mr-2" aria-hidden="true"></i>
+          Update Team
+        <% else %>
+          <i class="mdi mdi-content-save mr-2" aria-hidden="true"></i>
+          Create Team
+        <% end %>
+      <% end %>
+      <%= link_to teams_path, class: "btn btn-secondary btn-sm ml-2" do %>
+        <i class="mdi mdi-close-circle mr-2" aria-hidden="true"></i>
+        Discard
+      <% end %>
+    </div>
+  </div>
+<% end %>

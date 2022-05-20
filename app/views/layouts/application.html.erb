@@ -18,7 +18,7 @@
     <%= render "application/navbar" %>
     <div class="container">
       <% flash.each do |type, message| %>
-        <div class="alert <%= bootstrap_class_for(type) %>">
+        <div class="auto-hide alert <%= bootstrap_class_for(type) %>">
           <%= message %>
         </div>
       <% end %>

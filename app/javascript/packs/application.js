@@ -7,11 +7,13 @@ import Rails from "@rails/ujs"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
+import "../src/datatable";
+import "../src/global_config";
+
 import "bootstrap"
 import "../stylesheets/application"
 
 require('datatables.net-bs4')
-import { createDataTable } from "../src/datatable";
 
 const images = require.context("../images", true)
 

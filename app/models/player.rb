@@ -1,5 +1,7 @@
 class Player < ApplicationRecord
   has_one_attached :image
+  
+  belongs_to :team
 
   validate :correct_image_type
 
