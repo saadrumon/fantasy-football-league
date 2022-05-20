@@ -1,3 +1,3 @@
-export function createDataTable () {
+$(document).ready(function() {
   $('.datatable').DataTable();
-}
+});
