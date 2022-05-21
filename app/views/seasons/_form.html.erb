@@ -1,0 +1,42 @@
+<%= form_with(model: season) do |form| %>
+  <% if season.errors.any? %>
+    <div class="card mb-4 border border-danger">
+      <div class="card-header alert-danger">
+        <h2><%= pluralize(season.errors.count, "error") %> prohibited this season from being saved:</h2>
+      </div>
+      <div class="card-body text-danger">
+        <ul>
+          <% season.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="card mb-4">
+    <div class="card-body">
+      <div class="form-group">
+        <%= form.label :title %>
+        <span title="required" class="text-danger"> * </span>
+        <%= form.text_field :title, class: "form-control", required: true %>
+      </div>
+    </div>
+
+    <div class="card-footer d-flex justify-content-center">
+      <%= button_tag(type: 'submit', class: "btn btn-primary btn-sm mr-2") do %>
+        <% if @season.persisted? %>
+          <i class="mdi mdi-arrow-up-bold-circle mr-2" aria-hidden="true"></i>
+          Update Season
+        <% else %>
+          <i class="mdi mdi-content-save mr-2" aria-hidden="true"></i>
+          Create Season
+        <% end %>
+      <% end %>
+      <%= link_to seasons_path, class: "btn btn-secondary btn-sm ml-2" do %>
+        <i class="mdi mdi-close-circle mr-2" aria-hidden="true"></i>
+        Discard
+      <% end %>
+    </div>
+  </div>
+<% end %>

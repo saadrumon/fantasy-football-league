@@ -8,4 +8,15 @@ module ApplicationHelper
     }
     bootstrap_alert_class[flash_type.to_sym]
   end
+
+  def render_status_badge(object)
+    output = ''
+    if object.running?
+      output += "<span class='badge badge-success'>RUNNING</span>"
+    elsif object.ended?
+      output += "<span class='badge badge-info'>ENDED</span>"
+    end
+
+    output.html_safe
+  end
 end

@@ -1,0 +1,73 @@
+<%= form_with(url: manage_team_season_path, method: :post) do |form| %>
+  <td>
+    <%= form.text_field :team, 
+      class: "form-control", 
+      value: team.name, 
+      readonly: true %>
+  </td>
+  <td>
+    <% if team.get_player_by_type('Goalkeeper').present? %>
+      <%= form.text_field :goalkeeper, 
+      class: "form-control", 
+      value: team.get_player_by_type('Goalkeeper').full_name_with_id, 
+      readonly: true %>
+    <% else %>
+      <%= form.select :goalkeeper, 
+        options_from_collection_for_select(Player.Goalkeeper.where(team_id: nil), 'id', 'full_name_with_id'), 
+        { prompt: "-- Please Select --" }, 
+        class: "form-control", 
+        required: true %>
+    <% end %>
+  </td>
+  <td>
+    <% if team.get_player_by_type('Defender').present? %>
+      <%= form.text_field :defender, 
+      class: "form-control", 
+      value: team.get_player_by_type('Defender').full_name_with_id, 
+      readonly: true %>
+    <% else %>
+      <%= form.select :defender, 
+        options_from_collection_for_select(Player.Defender.where(team_id: nil), 'id', 'full_name_with_id'), 
+        { prompt: "-- Please Select --" }, 
+        class: "form-control", 
+        required: true %>
+    <% end %>
+  </td>
+  <td>
+    <% if team.get_player_by_type('Midfielder').present? %>
+      <%= form.text_field :midfielder, 
+      class: "form-control", 
+      value: team.get_player_by_type('Midfielder').full_name_with_id, 
+      readonly: true %>
+    <% else %>
+      <%= form.select :midfielder, 
+        options_from_collection_for_select(Player.Midfielder.where(team_id: nil), 'id', 'full_name_with_id'), 
+        { prompt: "-- Please Select --" }, 
+        class: "form-control", 
+        required: true %>
+    <% end %>
+  </td>
+  <td>
+    <% if team.get_player_by_type('Striker').present? %>
+      <%= form.text_field :striker, 
+      class: "form-control", 
+      value: team.get_player_by_type('Striker').full_name_with_id, 
+      readonly: true %>
+    <% else %>
+      <%= form.select :striker,
+        options_from_collection_for_select(Player.Striker.where(team_id: nil), 'id', 'full_name_with_id'), 
+        { prompt: "-- Please Select --" }, 
+        class: "form-control", 
+        required: true %>
+    <% end %>
+  </td>
+
+  <td>
+    <%= button_tag(type: "#{team.is_locked? ? 'button' : 'submit'}", 
+        class: "btn btn-#{team.is_locked? ? 'secondary' : 'primary'} btn-sm", 
+        disabled: team.is_locked? ? true : false) do %>
+      <i class="mdi mdi-<%= "#{team.is_locked? ? 'lock' : 'lock-open'}" %>" aria-hidden="true"></i>
+    <% end %>
+  </td>
+
+<% end %>

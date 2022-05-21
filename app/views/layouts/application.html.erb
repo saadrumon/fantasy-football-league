@@ -19,7 +19,7 @@
     <div class="container">
       <% flash.each do |type, message| %>
         <div class="auto-hide alert <%= bootstrap_class_for(type) %>">
-          <%= message %>
+          <%= message.html_safe %>
         </div>
       <% end %>
       <%= yield %>

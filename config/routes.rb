@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  resources :seasons do
+    member do
+      get :manage_team
+      post :manage_team
+      get :close
+    end
+  end
   resources :teams
   resources :players
   root 'home#index'

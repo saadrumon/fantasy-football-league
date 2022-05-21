@@ -1,8 +1,9 @@
 class Team < ApplicationRecord
   has_one_attached :logo
 
-  has_many :players
+  has_many :players, dependent: :nullify
 
+  validates :name, uniqueness: true
   validate :correct_logo_type
 
   # ToDo: Need to define properly
@@ -20,6 +21,9 @@ class Team < ApplicationRecord
     1
   end
 
+  def get_player_by_type(type)
+    self.players.find_by(playing_position: type.capitalize)
+  end
 
   private
 

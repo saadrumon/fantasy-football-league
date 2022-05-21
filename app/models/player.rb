@@ -1,7 +1,7 @@
 class Player < ApplicationRecord
   has_one_attached :image
   
-  belongs_to :team
+  belongs_to :team, optional: true
 
   validate :correct_image_type
 
@@ -11,6 +11,10 @@ class Player < ApplicationRecord
     Midfielder: 2,
     Striker: 3
   }
+
+  def full_name_with_id
+    "P##{id}: #{first_name} #{last_name}"
+  end
 
   private
 
