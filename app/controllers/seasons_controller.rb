@@ -8,6 +8,9 @@ class SeasonsController < ApplicationController
 
   # GET /seasons/1 or /seasons/1.json
   def show
+    if @season.is_team_managed
+      redirect_to season_games_path(@season)
+    end
   end
 
   # GET /seasons/new
@@ -82,6 +85,10 @@ class SeasonsController < ApplicationController
   
       @season.is_team_managed = all_team_locked
       @season.save!
+
+      if all_team_locked
+        render :show
+      end
     else
       if @season.ended?
         flash[:error] = "Season already ended."

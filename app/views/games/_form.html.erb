@@ -1,0 +1,104 @@
+<%= form_with(model: game, url: [@season, game]) do |form| %>
+  <% if game.errors.any? %>
+    <div class="card mb-4 border border-danger">
+      <div class="card-header alert-danger">
+        <h2><%= pluralize(game.errors.count, "error") %> prohibited this game from being saved:</h2>
+      </div>
+      <div class="card-body text-danger">
+        <ul>
+          <% game.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="card mb-4">
+    <div class="card-body">
+      <div class="form-group">
+        <%= form.label :team_1_id %>
+        <span title="required" class="text-danger"> * </span>
+        <%= form.select :team_1_id, 
+          options_from_collection_for_select(Team.all, 'id', 'name'), 
+          { prompt: "-- Please Select --" }, 
+          class: "form-control", 
+          required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :team_2_id %>
+        <span title="required" class="text-danger"> * </span>
+        <%= form.select :team_2_id, 
+          options_from_collection_for_select(Team.all, 'id', 'name'), 
+          { prompt: "-- Please Select --" }, 
+          class: "form-control", 
+          required: true %>
+      </div>
+
+      <div class="card mb-4">
+        <div class="card-header">
+          <p class="h4">Game 1</p>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <%= form.label :home_game_goal_team_1 %>
+                <span title="required" class="text-danger"> * </span>
+                <%= form.number_field :home_game_goal_team_1, class: "form-control", required: true %>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <%= form.label :away_game_goal_team_2 %>
+                <span title="required" class="text-danger"> * </span>
+                <%= form.number_field :away_game_goal_team_2, class: "form-control", required: true %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <p class="h4">Game 2</p>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <%= form.label :away_game_goal_team_1 %>
+                <span title="required" class="text-danger"> * </span>
+                <%= form.number_field :away_game_goal_team_1, class: "form-control", required: true %>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <%= form.label :home_game_goal_team_2 %>
+                <span title="required" class="text-danger"> * </span>
+                <%= form.number_field :home_game_goal_team_2, class: "form-control", required: true %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-footer d-flex justify-content-center">
+      <%= button_tag(type: 'submit', class: "btn btn-primary btn-sm mr-2") do %>
+        <% if game.persisted? %>
+          <i class="mdi mdi-arrow-up-bold-circle mr-2" aria-hidden="true"></i>
+          Update Game
+        <% else %>
+          <i class="mdi mdi-content-save mr-2" aria-hidden="true"></i>
+          Create Game
+        <% end %>
+      <% end %>
+      <%= link_to season_games_path(@season), class: "btn btn-secondary btn-sm ml-2" do %>
+        <i class="mdi mdi-close-circle mr-2" aria-hidden="true"></i>
+        Discard
+      <% end %>
+    </div>
+  </div>
+<% end %>

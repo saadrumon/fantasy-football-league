@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       post :manage_team
       get :close
     end
+    resources :games
   end
   resources :teams
   resources :players

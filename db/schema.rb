@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_21_132130) do
+ActiveRecord::Schema.define(version: 2022_05_22_184249) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -46,6 +46,21 @@ ActiveRecord::Schema.define(version: 2022_05_21_132130) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "games", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "team_1_id"
+    t.bigint "team_2_id"
+    t.bigint "season_id"
+    t.integer "home_game_goal_team_1"
+    t.integer "home_game_goal_team_2"
+    t.integer "away_game_goal_team_1"
+    t.integer "away_game_goal_team_2"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["season_id"], name: "index_games_on_season_id"
+    t.index ["team_1_id"], name: "index_games_on_team_1_id"
+    t.index ["team_2_id"], name: "index_games_on_team_2_id"
+  end
+
   create_table "players", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -76,5 +91,7 @@ ActiveRecord::Schema.define(version: 2022_05_21_132130) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "games", "teams", column: "team_1_id"
+  add_foreign_key "games", "teams", column: "team_2_id"
   add_foreign_key "players", "teams"
 end

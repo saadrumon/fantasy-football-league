@@ -19,9 +19,10 @@
                 <p class="text-danger">Currently there is no player in this team. 
                 Players can be added when new season starts.</p>
               <% else %>
-                <%= @team.players.each do |player| %>
-                  <%# ToDo: Need to set link to players view page. %>
-                  <p><%= "#{player.first_name} #{player.last_name}" %></p>
+                <% @team.players.each do |player| %>
+                  <%= link_to player_path(player) do %>
+                    <p><%= "#{player.first_name} #{player.last_name}" %></p>  
+                  <% end %>
                 <% end %>
               <% end %>
             </p>
