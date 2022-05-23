@@ -4,6 +4,7 @@ class Player < ApplicationRecord
   belongs_to :team, optional: true
 
   validate :correct_image_type
+  validate :validate_date_of_birth
 
   enum playing_position: {
     Goalkeeper: 0,
@@ -17,6 +18,12 @@ class Player < ApplicationRecord
   end
 
   private
+
+  def validate_date_of_birth
+    if date_of_birth >= Time.now
+      errors.add(:date_of_birth, "must be in the past.")
+    end
+  end
 
   def correct_image_type
     if image.attached? and !image.content_type.in?(%w[image/jpg image/jpeg image/png])

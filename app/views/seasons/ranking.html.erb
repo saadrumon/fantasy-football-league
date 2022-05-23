@@ -14,17 +14,24 @@
       <th>Points</th>
     </tr>
   </thead>
+  <tbody>
     <% @ranking.each_with_index do |(key, value), index| %>
       <tr>
         <td><%= index + 1 %></td>
-        <td><%= value[:team_name] %></td>
+        <td><%= key %></td>
         <td><%= value[:games_won] %></td>
         <td><%= value[:games_lost] %></td>
         <td><%= value[:games_drawn] %></td>
         <td><%= value[:games_played] %></td>
-        <td><%= key %></td>
+        <td><%= value[:points] %></td>
       </tr>
     <% end %>
-  <tbody>
   </tbody>
 </table>
+
+<div class="row d-flex justify-content-center">
+  <%= link_to seasons_path, class: "btn btn-secondary btn-sm ml-2" do %>
+    <i class="mdi mdi-arrow-left mr-2" aria-hidden="true"></i>
+    Back
+  <% end %>
+</div>

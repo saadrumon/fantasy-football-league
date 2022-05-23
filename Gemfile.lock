@@ -87,6 +87,7 @@ GEM
     ffi (1.15.5)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    humanize (2.5.1)
     i18n (1.10.0)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.1)
@@ -216,6 +217,7 @@ DEPENDENCIES
   byebug
   capybara (>= 3.26)
   dotenv-rails
+  humanize
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
   listen (~> 3.3)

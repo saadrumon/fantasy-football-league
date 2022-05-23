@@ -37,7 +37,12 @@
         <td><%= team.total_wins %></td>
         <td><%= team.total_draws %></td>
         <td><%= team.total_loses %></td>
-        <td><%= (team.total_wins * 100) / (team.total_wins + team.total_draws + team.total_loses) %> %</td>
+        <td>
+          <% if (team.total_wins + team.total_draws + team.total_loses).eql? 0 %>
+            N/A
+          <% else %>
+            <%= (team.total_wins * 100) / (team.total_wins + team.total_draws + team.total_loses) %> %</td>
+          <% end %>
         <td>
           <%= link_to team  do %>
             <i class="mdi mdi-eye mr-2" aria-hidden="true"></i>

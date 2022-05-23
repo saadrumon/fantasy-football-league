@@ -1,7 +1,7 @@
 <div class="row">
   <h1 class="col-md-6">Seasons</h1>
   <div class="col-md-6 text-right">
-    <% if Season.last.ended? %>
+    <% if !Season.any? or Season.last.ended? %>
       <%= link_to new_season_path, class: "btn btn-success my-2" do %>
         <i class="mdi mdi-plus mr-2" aria-hidden="true"></i>
         Create New Season
@@ -52,7 +52,7 @@
             <%= link_to season, title: 'Delete', 'data-toggle': 'tooltip', 'data-placement': 'right', method: :delete, data: { confirm: 'Are you sure?' } do %>
               <i class="mdi mdi-delete mr-2" aria-hidden="true"></i>
             <% end %>
-          <% else %>
+          <% elsif season.games.any? %>
             <%= link_to close_season_path(season), title: 'Close season', 'data-toggle': 'tooltip', 'data-placement': 'right', data: { confirm: 'Are you sure?' } do %>
               <i class="mdi mdi-flag-remove mr-2" aria-hidden="true"></i>
             <% end %>

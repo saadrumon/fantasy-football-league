@@ -142,8 +142,8 @@ class SeasonsController < ApplicationController
         games_played += 1
       end
       
-      @ranking[points] = {
-        team_name: team.name,
+      @ranking[team.name] = {
+        points: points,
         games_played: games_played,
         games_won: games_won,
         games_drawn: games_drawn,
@@ -151,7 +151,7 @@ class SeasonsController < ApplicationController
       }
     end
 
-    @ranking = @ranking.sort_by { |k, v| -k }
+    @ranking = @ranking.sort_by { |k, v| -v[:points] }
     @ranking = @ranking.to_h
   end
 

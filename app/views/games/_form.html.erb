@@ -46,14 +46,14 @@
               <div class="form-group">
                 <%= form.label :home_game_goal_team_1 %>
                 <span title="required" class="text-danger"> * </span>
-                <%= form.number_field :home_game_goal_team_1, class: "form-control", required: true %>
+                <%= form.number_field :home_game_goal_team_1, class: "form-control", required: true, min: 0 %>
               </div>
             </div>
             <div class="col">
               <div class="form-group">
                 <%= form.label :away_game_goal_team_2 %>
                 <span title="required" class="text-danger"> * </span>
-                <%= form.number_field :away_game_goal_team_2, class: "form-control", required: true %>
+                <%= form.number_field :away_game_goal_team_2, class: "form-control", required: true, min: 0 %>
               </div>
             </div>
           </div>
@@ -70,14 +70,14 @@
               <div class="form-group">
                 <%= form.label :away_game_goal_team_1 %>
                 <span title="required" class="text-danger"> * </span>
-                <%= form.number_field :away_game_goal_team_1, class: "form-control", required: true %>
+                <%= form.number_field :away_game_goal_team_1, class: "form-control", required: true, min: 0 %>
               </div>
             </div>
             <div class="col">
               <div class="form-group">
                 <%= form.label :home_game_goal_team_2 %>
                 <span title="required" class="text-danger"> * </span>
-                <%= form.number_field :home_game_goal_team_2, class: "form-control", required: true %>
+                <%= form.number_field :home_game_goal_team_2, class: "form-control", required: true, min: 0 %>
               </div>
             </div>
           </div>
