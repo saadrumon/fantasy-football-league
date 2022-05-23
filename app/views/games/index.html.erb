@@ -1,0 +1,73 @@
+<div class="row">
+  <h1 class="col-md-6">Games</h1>
+  <div class="col-md-6 text-right">
+    <% unless @season.ended? %>
+      <%= link_to new_season_game_path, class: "btn btn-success my-2" do %>
+        <i class="mdi mdi-plus mr-2" aria-hidden="true"></i>
+        Add New Game
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<table class="table table-bg table-hover datatable">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Team 1</th>
+      <th>Team 2</th>
+      <th>Team 1 Goal (Home)</th>
+      <th>Team 2 Goal (Away)</th>
+      <th>Team 1 Goal (Away)</th>
+      <th>Team 2 Goal (Home)</th>
+      <th>Winner</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @games.each_with_index do |game, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= game.team_1.name %></td>
+        <td><%= game.team_2.name %></td>
+        <td><%= game.home_game_goal_team_1 %></td>
+        <td><%= game.away_game_goal_team_2 %></td>
+        <td><%= game.away_game_goal_team_1 %></td>
+        <td><%= game.home_game_goal_team_2 %></td>
+        <td>
+          <% if (game.home_game_goal_team_1 + game.away_game_goal_team_1) > (game.home_game_goal_team_2 + game.away_game_goal_team_2) %>
+            <%= game.team_1.name %>
+          <% elsif (game.home_game_goal_team_1 + game.away_game_goal_team_1) < (game.home_game_goal_team_2 + game.away_game_goal_team_2) %>
+            <%= game.team_2.name %>
+          <% else %>
+            N/A
+          <% end %>
+        </td>
+        <td>
+          <div class="d-flex">
+            <%= button_to edit_season_game_path(@season, game), 
+                title: 'Edit', 
+                method: :get,
+                'data-toggle': 'tooltip', 
+                'data-placement': 'right',
+                class: "btn btn-#{@season.running? ? 'success' : 'secondary'} mr-2",
+                disabled: @season.running? ? false : true do %>
+              <i class="mdi mdi-account-edit" aria-hidden="true"></i>
+            <% end %>
+            <%= button_to season_game_path(@season, game), 
+                  title: 'Delete', 
+                  'data-toggle': 'tooltip', 
+                  'data-placement': 'right', 
+                  method: :delete,
+                  class: "btn btn-#{@season.running? ? 'danger' : 'secondary'}",
+                  data: { confirm: 'Are you sure?' },
+                  disabled: @season.running? ? false : true do %>
+              <i class="mdi mdi-delete" aria-hidden="true"></i>
+            <% end %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

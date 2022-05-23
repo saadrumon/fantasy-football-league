@@ -1,0 +1,37 @@
+<div class="row">
+  <h1 class="col-md-6">Ranking</h1>
+</div>
+
+<table class="table table-bg table-hover datatable">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Team Name</th>
+      <th>Won Games</th>
+      <th>Lost Games</th>
+      <th>Drawn Games</th>
+      <th>Games played</th>
+      <th>Points</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @ranking.each_with_index do |(key, value), index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= key %></td>
+        <td><%= value[:games_won] %></td>
+        <td><%= value[:games_lost] %></td>
+        <td><%= value[:games_drawn] %></td>
+        <td><%= value[:games_played] %></td>
+        <td><%= value[:points] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="row d-flex justify-content-center">
+  <%= link_to seasons_path, class: "btn btn-secondary btn-sm ml-2" do %>
+    <i class="mdi mdi-arrow-left mr-2" aria-hidden="true"></i>
+    Back
+  <% end %>
+</div>

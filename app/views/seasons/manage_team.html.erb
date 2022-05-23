@@ -1,0 +1,43 @@
+<div class="row">
+  <h1 class="col-md-12">Manage Teams</h1>
+</div>
+
+<div class="card">
+  <table class="table table-bg table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>
+          Goalkeeper
+          <span title="required" class="text-danger"> * </span>
+        </th>
+        <th>
+          Defender
+          <span title="required" class="text-danger"> * </span>
+        </th>
+        <th>
+          Midfielder
+          <span title="required" class="text-danger"> * </span>
+        </th>
+        <th>
+          Striker
+          <span title="required" class="text-danger"> * </span>
+        </th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% Team.all.each do |team| %>
+        <tr>
+          <%= render 'manage_team_form', team: team %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="card-footer d-flex justify-content-center">
+    <%= link_to seasons_path, class: "btn btn-secondary btn-sm ml-2" do %>
+      <i class="mdi mdi-close-circle mr-2" aria-hidden="true"></i>
+      Discard
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <%= link_to root_path, class: "navbar-brand py-0" do %>
+    <%= image_pack_tag "media/images/logo.png", size: "120x60" %>
+  <% end %>
+  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <%= link_to players_path, class: "nav-link text-white h5" do %>
+          <i class="mdi mdi-human-greeting-variant mr-2" aria-hidden="true"></i>
+          Players
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to teams_path, class: "nav-link text-white h5" do %>
+          <i class="mdi mdi-human-queue mr-2" aria-hidden="true"></i>
+          Teams
+        <% end %>
+      </li>      
+      <li class="nav-item">
+        <%= link_to seasons_path, class: "nav-link text-white h5" do %>
+          <i class="mdi mdi-soccer-field mr-2" aria-hidden="true"></i>
+          Seasons
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</nav>
