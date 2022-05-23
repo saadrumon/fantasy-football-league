@@ -1,5 +1,5 @@
 class SeasonsController < ApplicationController
-  before_action :set_season, only: %i[ show edit update destroy close manage_team ]
+  before_action :set_season, only: %i[ show edit update destroy close manage_team ranking ]
 
   # GET /seasons or /seasons.json
   def index
@@ -108,6 +108,53 @@ class SeasonsController < ApplicationController
     end
   end
 
+
+  def ranking
+    @ranking = {}
+
+    Team.all.each do |team|
+      points = 0
+      games_played = 0
+      games_won = 0
+      games_drawn = 0
+      
+      team.team_1_games.where(season: @season).each do |game|
+        if (game.home_game_goal_team_1 + game.away_game_goal_team_1) > (game.home_game_goal_team_2 + game.away_game_goal_team_2)
+          points += 3 
+          games_won += 1
+        end
+        if (game.home_game_goal_team_1 + game.away_game_goal_team_1).eql? (game.home_game_goal_team_2 + game.away_game_goal_team_2)
+          points += 1 
+          games_drawn += 1
+        end
+        games_played += 1
+      end
+
+      team.team_2_games.where(season: @season).each do |game|
+        if (game.home_game_goal_team_1 + game.away_game_goal_team_1) < (game.home_game_goal_team_2 + game.away_game_goal_team_2)
+          points += 3
+          games_won += 1 
+        end
+        if (game.home_game_goal_team_1 + game.away_game_goal_team_1).eql? (game.home_game_goal_team_2 + game.away_game_goal_team_2)
+          points += 1 
+          games_drawn += 1
+        end
+        games_played += 1
+      end
+      
+      @ranking[points] = {
+        team_name: team.name,
+        games_played: games_played,
+        games_won: games_won,
+        games_drawn: games_drawn,
+        games_lost: games_played - (games_won + games_drawn)
+      }
+    end
+
+    @ranking = @ranking.sort_by { |k, v| -k }
+    @ranking = @ranking.to_h
+  end
+
   def close
     @season.status = Season::ENDED
     @season.save!
@@ -136,20 +183,21 @@ class SeasonsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_season
-      @season = Season.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def season_params
-      params.require(:season).permit(
-        :title,
-        :team,
-        :goalkeeper, 
-        :defender,
-        :midfielder,
-        :striker
-      )
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_season
+    @season = Season.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def season_params
+    params.require(:season).permit(
+      :title,
+      :team,
+      :goalkeeper, 
+      :defender,
+      :midfielder,
+      :striker
+    )
+  end
 end

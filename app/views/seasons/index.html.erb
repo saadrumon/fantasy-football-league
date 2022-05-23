@@ -18,6 +18,7 @@
       <th>#</th>
       <th>Title</th>
       <th>Status</th>
+      <th>Ranking</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -29,6 +30,11 @@
         <td><%= season.title %></td>
         <td>
           <%= render_status_badge(season) %>
+        </td>
+        <td>
+          <%= link_to ranking_season_path(season), title: 'View ranking', 'data-toggle': 'tooltip', 'data-placement': 'right', class: "btn btn-sm btn-primary"  do %>
+            <i class="mdi mdi-poll mx-4" aria-hidden="true"></i>
+          <% end %>
         </td>
         <td>
           <%= link_to season, title: 'View', 'data-toggle': 'tooltip', 'data-placement': 'right'  do %>

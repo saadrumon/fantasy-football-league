@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       get :manage_team
       post :manage_team
       get :close
+      get :ranking
     end
     resources :games
   end
