@@ -18,7 +18,6 @@
       <th>#</th>
       <th>Title</th>
       <th>Status</th>
-      <th>Winner</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -31,8 +30,6 @@
         <td>
           <%= render_status_badge(season) %>
         </td>
-        <%# ToDo: Provide most point holder team %>
-        <td class="text-danger">Season is still running.</td>
         <td>
           <%= link_to season, title: 'View', 'data-toggle': 'tooltip', 'data-placement': 'right'  do %>
             <i class="mdi mdi-eye mr-2" aria-hidden="true"></i>

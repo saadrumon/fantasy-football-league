@@ -24,7 +24,8 @@
 
       <div class="form-group">
         <%= form.label :last_name %>
-        <%= form.text_field :last_name, class: "form-control" %>
+        <span title="required" class="text-danger"> * </span>
+        <%= form.text_field :last_name, class: "form-control", required: true %>
       </div>
 
       <div class="form-group">

@@ -8,9 +8,10 @@ class SeasonsController < ApplicationController
 
   # GET /seasons/1 or /seasons/1.json
   def show
-    if @season.is_team_managed
-      redirect_to season_games_path(@season)
+    if !@season.is_team_managed && @season.running?
+      flash[:error] = "Please select players for all team."
     end
+    redirect_to season_games_path(@season)
   end
 
   # GET /seasons/new
