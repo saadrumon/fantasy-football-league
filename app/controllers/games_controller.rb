@@ -18,7 +18,7 @@ class GamesController < ApplicationController
 
     respond_to do |format|
       if @game.save
-        format.html { redirect_to season_games_url(@season, @game), notice: "Player was successfully created." }
+        format.html { redirect_to season_games_url(@season, @game), notice: "Game was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end

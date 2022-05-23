@@ -20,6 +20,7 @@
       <th>Team 2 Goal (Away)</th>
       <th>Team 1 Goal (Away)</th>
       <th>Team 2 Goal (Home)</th>
+      <th>Winner</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -35,14 +36,36 @@
         <td><%= game.away_game_goal_team_1 %></td>
         <td><%= game.home_game_goal_team_2 %></td>
         <td>
-          <%= link_to edit_season_game_path(@season, game), title: 'Edit', 'data-toggle': 'tooltip', 'data-placement': 'right' do %>
-            <i class="mdi mdi-account-edit mr-2" aria-hidden="true"></i>
+          <% if (game.home_game_goal_team_1 + game.away_game_goal_team_1) > (game.home_game_goal_team_2 + game.away_game_goal_team_2) %>
+            <%= game.team_1.name %>
+          <% elsif (game.home_game_goal_team_1 + game.away_game_goal_team_1) < (game.home_game_goal_team_2 + game.away_game_goal_team_2) %>
+            <%= game.team_2.name %>
+          <% else %>
+            N/A
           <% end %>
-          <% if @season.running? %>
-            <%= link_to season_game_path(@season, game), title: 'Delete', 'data-toggle': 'tooltip', 'data-placement': 'right', method: :delete, data: { confirm: 'Are you sure?' } do %>
-              <i class="mdi mdi-delete mr-2" aria-hidden="true"></i>
+        </td>
+        <td>
+          <div class="d-flex">
+            <%= button_to edit_season_game_path(@season, game), 
+                title: 'Edit', 
+                method: :get,
+                'data-toggle': 'tooltip', 
+                'data-placement': 'right',
+                class: "btn btn-#{@season.running? ? 'success' : 'secondary'} mr-2",
+                disabled: @season.running? ? false : true do %>
+              <i class="mdi mdi-account-edit" aria-hidden="true"></i>
             <% end %>
-          <% end %>
+            <%= button_to season_game_path(@season, game), 
+                  title: 'Delete', 
+                  'data-toggle': 'tooltip', 
+                  'data-placement': 'right', 
+                  method: :delete,
+                  class: "btn btn-#{@season.running? ? 'danger' : 'secondary'}",
+                  data: { confirm: 'Are you sure?' },
+                  disabled: @season.running? ? false : true do %>
+              <i class="mdi mdi-delete" aria-hidden="true"></i>
+            <% end %>
+          </div>
         </td>
       </tr>
     <% end %>

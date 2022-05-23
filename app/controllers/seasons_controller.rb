@@ -88,7 +88,7 @@ class SeasonsController < ApplicationController
       @season.save!
 
       if all_team_locked
-        render :show
+        redirect_to season_games_path(@season)
       end
     else
       if @season.ended?

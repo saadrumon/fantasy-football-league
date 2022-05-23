@@ -1,5 +1,66 @@
+<div id="dashboard"></div>
 <div class="alert alert-success mt-4 justify-content-center align-content-center">
     <h1 class="text-brand text-center"> 
       Welcome to Fantasy Football League
     </h1>
+</div>
+
+<div class="row mb-4">
+  <div class="col-md-12">
+    <div class="card" id="card_1" data-labels="<%= @season_team_names.to_json %>" data-data="<%= @season_team_points.to_json %>">
+      <div class="card-header">
+        <p class="h4">Points by Season</p>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-10">
+            <%= select_tag "select_1", options_from_collection_for_select(Season.all, "title", "title"), class: "form-control" %>
+          </div>
+          <div class="col-md-2">
+            <%= button_tag 'Apply', type: 'button', id: 'button_1', class: 'btn btn-success col-md-12' %>
+          </div>
+        </div>
+        <canvas id="chart_1"></canvas>
+      </div>
+    </div> 
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="card" id="card_2" data-labels="<%= @season_team_names.to_json %>" data-data="<%= @season_team_goals_scored.to_json %>">
+      <div class="card-header">
+        <p class="h4">Goals Scored</p>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-8">
+            <%= select_tag "select_2", options_from_collection_for_select(Season.all, "title", "title"), class: "form-control" %>
+          </div>
+          <div class="col-md-4">
+            <%= button_tag 'Apply', type: 'button', id: 'button_2', class: 'btn btn-success col-md-12' %>
+          </div>
+        </div>
+        <canvas id="chart_2"></canvas>
+      </div>
+    </div> 
+  </div>
+  <div class="col-md-6">
+    <div class="card" id="card_3" data-labels="<%= @season_team_names.to_json %>" data-data="<%= @season_team_goals_conceded.to_json %>">
+      <div class="card-header">
+        <p class="h4">Goals Conceded</p>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-8">
+            <%= select_tag "select_3", options_from_collection_for_select(Season.all, "title", "title"), class: "form-control" %>
+          </div>
+          <div class="col-md-4">
+            <%= button_tag 'Apply', type: 'button', id: 'button_3', class: 'btn btn-success col-md-12' %>
+          </div>
+        </div>
+        <canvas id="chart_3"></canvas>
+      </div>
+    </div> 
+  </div>
 </div>
