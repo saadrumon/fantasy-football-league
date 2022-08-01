@@ -40,11 +40,4 @@ Start the application server.
 
 Open the browser and hit the following url to check out the application:
 
-    `http://localhost:3000/`
-
-# Useful Links
-
-* Ruby on Rails ([https://guides.rubyonrails.org/]())
-* Ruby Language ([https://www.ruby-lang.org/en/documentation/](https://www.ruby-lang.org/en/documentation/))
-* Responsive Datatable Library ([https://datatables.net/]())
-* Dashboard Charts Library ([https://www.chartjs.org/]())
+    `https://www.getpostman.com/collections/b2245e4f66e034013bfd`
